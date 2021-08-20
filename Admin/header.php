@@ -37,6 +37,9 @@
         FirstDecisionMaker($_SESSION['level']);
         ?>
         <ul class="list-unstyled components mb-5">
+          <li class="active">
+            <a href="admin.php"><span class="fa fa-home mr-3"></span>Main Page</a>
+          </li>
           <div id="show">
           <li class="active">
             <a href="pegawai.php"><span class="fa fa-user mr-3"></span>Daftar Pegawai</a>
