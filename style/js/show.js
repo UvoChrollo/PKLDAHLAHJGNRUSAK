@@ -17,3 +17,13 @@ function FormShow(){
               x.style.display = "none";
             }
           }
+
+function FormShowDua(){
+            var x = document.getElementById('FoSoDua');
+            if (x.style.display === "none"){
+              x.style.display = "block";
+            }
+            else{
+              x.style.display = "none";
+            }
+          }

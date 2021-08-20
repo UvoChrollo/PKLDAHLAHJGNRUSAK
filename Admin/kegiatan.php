@@ -30,9 +30,19 @@
             <div id="content" class="p-4 p-md-5 pt-5">
               <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
                 <button type="button" class="btn btn-primary"><a href="addkegiatan.php" style="color: white"><i class="fa fa-plus"></i></a></button>
+                <button type="button" class="btn btn-primary" onclick="FormShow()">Tahun</button>
+                <button type="button" class="btn btn-primary" onclick="FormShow()">Bulan</button>
               </div>
               <h4 align="center">Daftar Kegiatan LLDIKTI Wilayah X</h4>
-
+              <!-- Fitur Searching -->
+              <div class="form-group" id="FoSo" style="display: none;">
+                  <input type="month" class="form-control" id="search" style="background: gainsboro; color: black; width: 100%">
+                </div>
+                <div class="form-group" id="FoSo" style="display: none;">
+                  <input type="number" class="form-control" id="search" style="background: gainsboro; color: black; width: 100%">
+                </div>
+                <!-- End of Searching -->
+                <br>
                 <table class="table table-dark table-striped" align="center" id="data">
                   <thead>
                   <tr align="center">
@@ -82,5 +92,24 @@
             </div>
             <!-- End of Page Content -->
       </div>
+      <script src="../style/js/show.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       <script type="text/javascript">
+              $(document).ready(function() {
+                  $('#search').on('keyup', function() {
+                    search = document.getElementById('search').value;
+                    tampil = document.getElementById('data');
+                      $.ajax({
+                          type: 'POST',
+                          url:  'findpegawai.php',
+                          data: 'search='+search,
+                          cache: false,
+                          success: function(data) {
+                            $('#data').html(data);
+                          }
+                      });
+                  });
+              });
+          </script>
 </body>
 </html>
