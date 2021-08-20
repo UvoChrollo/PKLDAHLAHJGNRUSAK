@@ -35,6 +35,9 @@
 
             <!-- Page Content -->
             <div id="content" class="p-4 p-md-5 pt-5">
+              <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
+                <button type="button" class="btn btn-primary"><a href="addatasan.php" style="color: white"><i class="fa fa-plus"></i></a></button>
+              </div>
               <h3 align="center">Pegawai Keuangan</h3>
 
                 <table class="table table-dark table-striped" align="center" id="data">
