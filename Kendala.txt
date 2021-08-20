@@ -1,0 +1,2 @@
+1. Beberapa data ada yang duplikat
+2. NIP, Pangkat, Jabatan banyak yang Null
