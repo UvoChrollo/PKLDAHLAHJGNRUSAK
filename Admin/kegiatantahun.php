@@ -29,18 +29,14 @@
             <!-- Page Content -->
             <div id="content" class="p-4 p-md-5 pt-5">
               <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
-                <button type="button" class="btn btn-primary"><a href="addkegiatan.php" style="color: white"><i class="fa fa-plus"></i></a></button>
-                <button type="button" class="btn btn-primary"><a href="kegiatanbulan.php" style="color: white">Bulan</a></button>
-                <button type="button" class="btn btn-primary"><a href="kegiatantahun.php" style="color: white">Tahun</a></button>
+                <button type="button" class="btn btn-primary"><i class="fa fa-caret-left"></i></button>
+                <button type="button" class="btn btn-primary" onclick="ShowBulan()">Tahun</button>
               </div>
               <h4 align="center">Daftar Kegiatan LLDIKTI Wilayah X</h4>
               <!-- Fitur Searching -->
-              <div class="form-group" id="FoSo" style="display: none;">
-                  <input type="date" class="form-control" name="inp" id="search" style="background: gainsboro; color: black; width: 100%">
-                </div>
-                <div class="form-group" id="FoSoYear" style="display: none;">
+                <form class="form-group" id="FoSoYear" style="display: none;">
                   <input type="number" class="form-control" name="inp" id="search"  style="background: gainsboro; color: black; width: 100%">
-                </div>
+                </form>
                 <!-- End of Searching -->
                 <br>
                 <table class="table table-dark table-striped" align="center" id="data">
@@ -53,24 +49,16 @@
                     <td>Biaya</td>
                     <td>Keterangan</td>
                     <td>Total</td>
-                    <td>Yearmonth</td>
                     <td style="width: 100px;">Aksi</td>
                   </tr>
                   </thead>
                   <?php 
-                    $batas = 10;
-                    $halaman = isset($_GET['halaman'])?(int)$_GET['halaman']:1;
-                    $halaman_awal = ($halaman>1)?($halaman * $batas) - $batas : 0;
-                    $previous = $halaman - 1;
-                    $next = $halaman + 1;
+                    if (isset($_GET['inp'])) {
+                        $pro = $_GET['inp'];
 
-                    include '../koneksi.php';
-                    $data = mysqli_query($koneksi, "select * from kegiatan");
-                    $jumlah_data = mysqli_num_rows($data);
-                    $total_halaman = ceil($jumlah_data / $batas);
-
-                    $query_mysqli = mysqli_query($koneksi, "SELECT * FROM kegiatan limit $halaman_awal, $batas")or die(mysqli_error());
-                    while ($data = mysqli_fetch_array($query_mysqli)) {
+                        include '../koneksi.php';
+                        $query = mysqli_query($koneksi, "SELECT * FROM kegiatan WHERE year(kegiatan.tanggal) = '$pro'")or die(mysqli_error());
+                        while($data = mysqli_fetch_assoc($query)){
                   ?>
                   <tbody>
                   <tr id="tampil">
@@ -80,8 +68,7 @@
                     <td><?php echo $data['kegiatan'];?></td>
                     <td><?php echo $data['biaya'];?></td>
                     <td><?php echo $data['keterangan'];?></td>
-                    <td><?php echo number_format($data['total']);?></td>
-                    <td><?php echo $data['yearmonth'];?></td>
+                    <td><?php echo $data['total'];?></td>
                     <td align="center">
                           <a href="output.php?sppd=<?php echo $data['sppd']; ?>"><i class="fa fa-eye text-white"></i></a> <!-- Edit  -->
                           &nbsp;|&nbsp;
@@ -89,7 +76,7 @@
                     </td>
                   </tr>
                   </tbody>
-                  <?php } ?>
+                  <?php }} ?>
                 </table>
             </div>
             <!-- End of Page Content -->

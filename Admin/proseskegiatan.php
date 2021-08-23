@@ -11,7 +11,7 @@ if (isset($_POST['submit'])){
 	}
 	
 	 $SPPD = $_POST['SPPD'];
-	 $tanggal = date("Y-m-d");
+	 $tanggal = $_POST['tanggal'];
 	 $Nama = $_POST['Nama'];
 	 $kegiatan = implode("<br>", $_POST['Kegiatan']);
 	 $duit = implode("<br>", $_POST['Biaya']);
@@ -21,11 +21,12 @@ if (isset($_POST['submit'])){
 	 $c = "Bendahara Pengeluaran Pembantu";
 	 $d = "Bendahara Pengeluaran Pembantu";
 	 $nip_pegawai = NIP($Nama);
+	 $my = date("M Y",strtotime($tanggal));
 
 	 session_start();
 	 $_SESSION['SPPD'] = $SPPD;
 
-	 mysqli_query($koneksi, "INSERT INTO kegiatan VALUES('$SPPD', '$tanggal', '$Nama', '$kegiatan', '$duit', '$Keterangan', '$nip_pegawai', '$a', '$b', '$c', '$d', '$total')") or die (mysqli_error());
+	 mysqli_query($koneksi, "INSERT INTO kegiatan VALUES('$SPPD', '$tanggal', '$Nama', '$kegiatan', '$duit', '$Keterangan', '$nip_pegawai', '$a', '$b', '$c', '$d', '$total','$my')") or die (mysqli_error());
 	 header('location:preoutput.php');
 }
 ?>

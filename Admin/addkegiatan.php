@@ -35,6 +35,13 @@
                         <input type="number" class="form-control" name="SPPD" style="background: gainsboro; color: black; width: 100%;">
                       </div>
                     </div>
+                    <!-- Tanggal -->
+                    <div class="row mb-3">
+                      <label class="col-sm-2 col-form-label">Tanggal</label>
+                      <div class="col-sm-10">
+                        <input type="date" class="form-control" name="tanggal" style="background: gainsboro; color: black; width: 100%;">
+                      </div>
+                    </div>
 
                     <div class="ui-widget">
                     <div class="row mb-3">
