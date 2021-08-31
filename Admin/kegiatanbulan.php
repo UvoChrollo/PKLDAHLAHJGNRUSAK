@@ -29,12 +29,21 @@
             <!-- Page Content -->
             <div id="content" class="p-4 p-md-5 pt-5">
               <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
-                <button type="button" class="btn btn-primary" onclick="ShowBulan()">Tahun</button>
+                <button type="button" class="btn btn-primary" onclick="ShowBulan()">Bulan</button>
               </div>
               <h4 align="center">Daftar Kegiatan LLDIKTI Wilayah X</h4>
               <!-- Fitur Searching -->
                 <form class="form-group" id="FoSoYear" style="display: none;">
-                  <input type="number" class="form-control" name="inp" id="search"  style="background: gainsboro; color: black; width: 100%">
+                <input type="text" class="form-control" name="inp" style="background: gainsboro; color: black; width: 100%" list="bulan">
+                  <datalist id="bulan">
+                          <?php 
+                          include '../koneksi.php';
+                          $query = mysqli_query($koneksi, "SELECT DISTINCT(yearmonth) from kegiatan");
+                          while ($data = mysqli_fetch_assoc($query)) { 
+                          ?>
+                            <option><?php echo $data['yearmonth']; ?></option>
+                          <?php } ?>
+                        </datalist>
                 </form>
                 <!-- End of Searching -->
                 <br>
@@ -56,7 +65,7 @@
                         $pro = $_GET['inp'];
 
                         include '../koneksi.php';
-                        $query = mysqli_query($koneksi, "SELECT * FROM kegiatan WHERE year(kegiatan.tanggal) = '$pro'")or die(mysqli_error());
+                        $query = mysqli_query($koneksi, "SELECT * FROM kegiatan WHERE yearmonth = '$pro'")or die(mysqli_error());
                         while($data = mysqli_fetch_assoc($query)){
                   ?>
                   <tbody>
@@ -67,7 +76,7 @@
                     <td><?php echo $data['kegiatan'];?></td>
                     <td><?php echo $data['biaya'];?></td>
                     <td><?php echo $data['keterangan'];?></td>
-                    <td><?php echo $data['total'];?></td>
+                    <td><?php echo number_format($data['total']);?></td>
                     <td align="center">
                           <a href="output.php?sppd=<?php echo $data['sppd']; ?>"><i class="fa fa-eye text-white"></i></a> <!-- Edit  -->
                           &nbsp;|&nbsp;

@@ -68,7 +68,7 @@
                     <td><?php echo $data['kegiatan'];?></td>
                     <td><?php echo $data['biaya'];?></td>
                     <td><?php echo $data['keterangan'];?></td>
-                    <td><?php echo $data['total'];?></td>
+                    <td><?php echo number_format($data['total']);?></td>
                     <td align="center">
                           <a href="output.php?sppd=<?php echo $data['sppd']; ?>"><i class="fa fa-eye text-white"></i></a> <!-- Edit  -->
                           &nbsp;|&nbsp;
