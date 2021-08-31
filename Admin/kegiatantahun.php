@@ -29,7 +29,6 @@
             <!-- Page Content -->
             <div id="content" class="p-4 p-md-5 pt-5">
               <div class="btn-group" role="group" aria-label="Basic example" style="float: right;">
-                <button type="button" class="btn btn-primary"><i class="fa fa-caret-left"></i></button>
                 <button type="button" class="btn btn-primary" onclick="ShowBulan()">Tahun</button>
               </div>
               <h4 align="center">Daftar Kegiatan LLDIKTI Wilayah X</h4>
